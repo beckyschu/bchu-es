@@ -1,0 +1,18 @@
+version: "3.0"
+services:
+  elastic_db:
+    build:
+      context: .
+      dockerfile: docker/db.Dockerfile
+    ports:
+      - "3306:3306"
+  elastic_main:
+    build:
+      context: .
+      dockerfile: docker/main.Dockerfile
+    links: 
+      - elastic_db
+    ports:
+      - "80:80"
+    volumes:
+      - .:/home/elastic

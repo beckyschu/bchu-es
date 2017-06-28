@@ -29,15 +29,15 @@
         <div class="row">
             <div class="container">
                 @forelse ($discoveries as $discovery)
-                    <article>
+                    <discovery>
                         <h2>{{ $discovery->title }}</h2>
 
-                        <p>{{ $discovery->body }}</body>
+                        <p>{{ $discovery->url }}</body>
 
                         <p class="well">
-                            {{ implode(', ', $discovery->tags ?: []) }}
+                            {{ implode(', ', $discovery->keyword ?: []) }}
                         </p>
-                    </article>
+                    </discovery>
                 @empty
                     <p>No discovery found</p>
                 @endforelse
@@ -45,27 +45,6 @@
         </div>
     </div>
 </div>
-        <div class="container">
-            <div class="row">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        Articles <small>({{ $discoveries->count() }})</small>
-                    </div>
-                    <div class="panel-body">
-                        @forelse ($discoveries as $discovery)
-                            <article>
-                                <h2>{{ $discovery->title }}</h2>
-
-                                <p>{{ $discovery->body }}</body>
-
-                                <p class="well">{{ implode(', ', $discovery->tags ?: []) }}</p>
-                            </article>
-                        @empty
-                            <p>No discoveries found</p>
-                        @endforelse
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </body>
 </html>

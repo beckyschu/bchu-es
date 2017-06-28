@@ -16,8 +16,8 @@ class CreateDiscoveriesTable extends Migration
         Schema::create('discoveries', function (Blueprint $table) {
           $table->increments('id');
     	    $table->string('title');
-    	    $table->text('body');
-    	    $table->json('tags');
+    	    $table->text('url');
+    	    $table->json('keyword');
     	    $table->timestamps();
         });
     }

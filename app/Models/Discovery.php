@@ -8,6 +8,6 @@ class Discovery extends Model
 {
 
     protected $casts = [
-        'tags' => 'json',
+        'keyword' => 'json',
     ];
 }
