@@ -1,6 +1,6 @@
 version: "3.0"
 services:
-  mysql:
+  elastic_db:
     build:
       context: .
       dockerfile: docker/db.Dockerfile
@@ -11,10 +11,8 @@ services:
       context: .
       dockerfile: docker/web.Dockerfile
     links:
-      - mysql
-    depends_on:
+      - elastic_db
       - php-fpm_1
-      - mysql
     volumes:
       - .:/var/log/nginx
       - .:/etc/nginx/sites-available
@@ -22,27 +20,19 @@ services:
       - "8080:80"
       - "443:443"
   php-fpm_1:
-    image: php:7.0.4-fpm
+    build:
+      context: .
+      dockerfile: docker/php.Dockerfile
     volumes:
       - .:/home/elastic
-    depends_on:
-      - mysql
-    links:
-      - mysql
-    ports:
-      - "9000:9000"
   elastic_app:
     build:
       context: .
       dockerfile: docker/app.Dockerfile
     links:
-      - mysql
+      - elastic_db
       - nginx_1
       - php-fpm_1
-    depends_on:
-      - php-fpm_1
-      - nginx_1
-      - mysql
     ports:
       - "80:80"
     volumes:
