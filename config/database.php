@@ -41,12 +41,12 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'bchu_db'),
-            'username' => env('DB_USERNAME', 'bchu'),
-            'password' => env('DB_PASSWORD', 'bchu1'),
-            'unix_socket' => env('DB_SOCKET', ''),
+            'database' => env('DB_DATABASE', 'elastic_db'),
+            'username' => env('DB_USERNAME', 'elastic_user'),
+            'password' => env('DB_PASSWORD', 'password'),
+            'unix_socket' => env('DB_SOCKET', '/tmp/mysql.sock'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',

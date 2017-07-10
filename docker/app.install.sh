@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
 echo '[*] Installing composer dependencies'
-echo "PWD: `pwd`"
-echo `which composer`
-echo `composer --version`
 composer install --prefer-dist
 echo
 
@@ -17,12 +14,6 @@ echo
 
 echo '[*] Clearing cache'
 php artisan cache:clear
-echo
-
-echo '[*] Listing files'
-ls -la
-pwd
-cat database/initial.sql
 echo
 
 echo '[*] Generating encryption key'
@@ -45,9 +36,6 @@ echo '[*] Optimizing framework'
 php artisan optimize
 echo
 
-echo '[*] Serving up application'
-php artisan serve
-echo
 
 echo '[*] Installation complete'
 echo '[*] You should now run "npm start" which will start application services'
