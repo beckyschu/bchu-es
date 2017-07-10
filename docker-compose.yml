@@ -6,23 +6,24 @@ services:
       dockerfile: docker/db.Dockerfile
     ports:
       - "3306:3306"
-  nginx_1:
+  elastic_web:
     build:
       context: .
       dockerfile: docker/web.Dockerfile
     links:
       - elastic_db
-      - php-fpm_1
+      - elastic_php_fpm
     volumes:
       - .:/var/log/nginx
       - .:/etc/nginx/sites-available
     ports:
       - "8080:80"
-      - "443:443"
-  php-fpm_1:
+  elastic_php_fpm:
     build:
       context: .
       dockerfile: docker/php.Dockerfile
+    links:
+      - elastic_db
     volumes:
       - .:/home/elastic
   elastic_app:
@@ -31,9 +32,7 @@ services:
       dockerfile: docker/app.Dockerfile
     links:
       - elastic_db
-      - nginx_1
-      - php-fpm_1
-    ports:
-      - "80:80"
+      - elastic_web
+      - elastic_php_fpm
     volumes:
       - .:/home/elastic

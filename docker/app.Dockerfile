@@ -11,7 +11,10 @@ RUN apt-get update \
 		software-properties-common
 
 # Install PHP
-RUN apt-get -y update && apt-get install -y php7.0
+# Install php-mbstring = laravel/framework v5.4.27 requires ext-mbstring *
+# Install php7.0-xml = phpunit/php-code-coverage 4.0.8 requires ext-dom *
+RUN apt-get -y update \
+  && apt-get install -y php7.0 php7.0-mysql php-mbstring php7.0-xml
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
