@@ -59,3 +59,8 @@ docker run -v "$PWD":/usr/src/app -w /usr/src/app node:8.1.2 npm install
 docker images | grep bchues
 docker rmi -f 93a5823f6701
 https://docs.docker.com/compose/compose-file/compose-file-v2/#links
+
+=================== DOCKER networks
+https://docs.docker.com/engine/userguide/networking/#user-defined-networks
+docker network ls
+docker network inspect bchues_default

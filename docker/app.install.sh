@@ -36,7 +36,6 @@ echo '[*] Optimizing framework'
 php artisan optimize
 echo
 
-
 echo '[*] Installation complete'
 echo '[*] You should now run "npm start" which will start application services'
 echo '[*] You can login using "dan@dangreaves.com" with "password"'
