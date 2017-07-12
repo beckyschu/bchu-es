@@ -31,7 +31,8 @@ services:
       - .:/etc/nginx/sites-available
       - .:/home/elastic
     ports:
-      - "8080:80"
+      - "80:80"
+      - "443:443"
   elastic_php_fpm:
     build:
       context: .

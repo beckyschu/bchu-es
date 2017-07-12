@@ -48,7 +48,11 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 */
 
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-phpinfo();
+
+// PDO driver exception for mysql.  Need to see where php.ini file was
+// and which drivers were installed for php - bchu (7/12/2017)
+//phpinfo();
+
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
