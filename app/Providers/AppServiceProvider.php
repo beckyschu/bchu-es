@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Interfaces\DiscoveryRepositoryInterface;
+use App\Contracts\DiscoveryRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\DiscoveryRepository;
+use App\Repositories\Eloquent\DiscoveryRepository;
 
 
 class AppServiceProvider extends ServiceProvider

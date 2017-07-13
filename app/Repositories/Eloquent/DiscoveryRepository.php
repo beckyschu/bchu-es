@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Eloquent;
 
 use App\Models\Discovery;
-use App\Interfaces\DiscoveryRepositoryInterface;
+use App\Contracts\DiscoveryRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 
 class DiscoveryRepository implements DiscoveryRepositoryInterface

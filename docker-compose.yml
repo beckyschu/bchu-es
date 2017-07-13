@@ -10,8 +10,6 @@ services:
     build:
       context: .
       dockerfile: docker/app.Dockerfile
-    ports:
-      - "22:22"
     tty: true
     restart: always
     volumes:
