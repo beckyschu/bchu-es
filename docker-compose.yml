@@ -43,3 +43,23 @@ services:
       - "9000"
     volumes:
       - .:/home/elastic
+  elastic_beanstalkd:
+    build:
+      context: .
+      dockerfile: docker/beanstalkd.Dockerfile
+    ports:
+      - "11300:11300"
+    privileged: true
+    depends_on:
+      - elastic_php_fpm
+  elastic_php_worker:
+    build:
+      context: .
+      dockerfile: docker/php_worker.Dockerfile
+    depends_on:
+      - elastic_app
+    links:
+      - elastic_beanstalkd
+      - elastic_db
+    volumes:
+      - .:/home/elastic

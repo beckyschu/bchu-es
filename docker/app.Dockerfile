@@ -33,6 +33,4 @@ RUN npm install -g yarn
 
 # need to install node, npm, & composer depending on the system that you're on
 
-ADD ./docker/app.supervisor.conf /etc/supervisor/conf.d/supervisor.conf
-
 CMD /home/elastic/docker/app.install.sh

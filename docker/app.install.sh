@@ -4,6 +4,11 @@ echo '[*] Installing composer dependencies'
 composer install --prefer-dist
 echo
 
+# Do I need to do this for beanstalkd?
+# echo '[*] Installing composer beanstalkd dependencies'
+# composer require pda/pheanstalk
+# echo
+
 echo '[*] Installing Yarn dependencies'
 yarn
 echo
