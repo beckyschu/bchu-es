@@ -11,7 +11,8 @@
 |
 */
 use App\Models\Discovery;
-use App\Interfaces\DiscoveryRepositoryInterface;
+use App\Contracts\DiscoveryRepositoryInterface;
+use App\Http\Controllers\QueueController;
 
 Route::get('/', function () {
     return view('discoveries.index', [
@@ -26,3 +27,5 @@ Route::get('/search', function (DiscoveryRepositoryInterface $repository) {
     	'discoveries' => $discoveries,
     ]);
 });
+
+Route::get('/queue/add', 'QueueController@add');

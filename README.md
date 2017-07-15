@@ -64,3 +64,28 @@ https://docs.docker.com/compose/compose-file/compose-file-v2/#links
 https://docs.docker.com/engine/userguide/networking/#user-defined-networks
 docker network ls
 docker network inspect bchues_default
+
+https://docs.docker.com/engine/tutorials/dockervolumes/#mount-a-shared-storage-volume-as-a-data-volume
+
+PDO issue
+https://forums.docker.com/t/php-ini-file-makes-it-to-my-container-but-has-no-impact-on-phpinfo/17576
+
+==================== BEANSTALK LOCAL ENV CHANGES ==============
+.env = DB_HOST, QUEUE_DRIVER
+configs/queue.php (needs to point to elastic_beanstalkd instead of localhost)
+
+brew services start mysql
+brew services start beanstalkd
+php artisan queue:listen --queue discovery
+
+npm install
+npm run dev
+php artisan serve
+
+telnet localhost 11300
+stats
+
+more storage/logs/laravel.log
+
+php artisan config:cache
+php artisan config:clear
