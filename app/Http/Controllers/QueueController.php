@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Discovery;
 use App\Jobs\ElasticScheduleCrawl;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -24,18 +23,9 @@ class QueueController extends BaseController
     */
   public function add()
   {
-  //  Queue::push('MyQueue', array());
-
-
-                  // Create the crawl
-                  $discovery = Discovery::create([
-                      'title' => 'hello',
-                      'url' => 'http',
-                      'keyword'   => 'keyword'
-                  ]);
 
                   // Add to queue for processing
-                  dispatch(new ElasticScheduleCrawl($discovery));
+                  dispatch(new ElasticScheduleCrawl());
 
                   // Log some info
                   Log::info('[Repositories\CrawlRepository] Dispatched Jobs\ElasticScheduleCrawl');

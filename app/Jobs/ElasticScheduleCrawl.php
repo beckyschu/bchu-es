@@ -19,12 +19,10 @@ class ElasticScheduleCrawl implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Models\Discovery $discovery)
+    public function __construct()
     {
         //
             $this->onQueue('discovery');
-
-            $this->discovery = $discovery;
     }
 
     /**

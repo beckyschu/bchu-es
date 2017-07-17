@@ -89,3 +89,28 @@ more storage/logs/laravel.log
 
 php artisan config:cache
 php artisan config:clear
+
+
+========= TODO next week
+1) CLEANUP my example - i.e., take out myqueue, etc - figure out why getting index.blade.php example error
+2) research beanstalkd console
+3) incorporate docker settings:
+.env
+configs/queue.php
+stop services running on local machine (mysql & beanstalkd)
+
+
+
+        'beanstalkd' => [
+            'driver' => 'beanstalkd',
+            'host' => 'localhost',
+            'queue' => 'discovery',
+            'retry_after' => 90,
+        ],
+
+        'beanstalkd' => [
+            'driver' => 'beanstalkd',
+            'host' => 'elastic_beanstalkd',
+            'queue' => 'discovery',
+            'retry_after' => 90,
+        ],
