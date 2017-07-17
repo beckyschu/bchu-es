@@ -90,6 +90,8 @@ more storage/logs/laravel.log
 php artisan config:cache
 php artisan config:clear
 
+===================== SUPERVISORD installation localhost =========
+https://nicksergeant.com/running-supervisor-on-os-x/
 
 ========= TODO next week
 1) CLEANUP my example - i.e., take out myqueue, etc - figure out why getting index.blade.php example error
