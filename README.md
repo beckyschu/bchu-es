@@ -11,6 +11,9 @@ https://yarnpkg.com/en/docs/install = yarn install
 http://docs.brew.sh/Manpage.html = brew manpage
 https://laravel.com/docs/5.4/installation = laravel install
 
+==================== BACKING UP DB
+mysqldump --all-databases > dump.sql -
+
 
 ==================== ONCE everything is installed ======================
 
@@ -90,6 +93,10 @@ more storage/logs/laravel.log
 php artisan config:cache
 php artisan config:clear
 
+
+https://hub.docker.com/r/schickling/beanstalkd-console/
+docker run -d -p 11300:11300 --name beanstalkd schickling/beanstalkd
+
 ===================== SUPERVISORD installation localhost =========
 https://nicksergeant.com/running-supervisor-on-os-x/
 
@@ -116,3 +123,23 @@ stop services running on local machine (mysql & beanstalkd)
             'queue' => 'discovery',
             'retry_after' => 90,
         ],
+
+===================== REDIS queue
+
+1) Multiple ways to monitor redis
+ON STAGING and PRODUCTION (via redis-cli command as ipshark user)
+
+[ipshark@cl-t178-343cl code]$ redis-cli
+redis 127.0.0.1:6379> monitor
+OK
+1500337516.296072 "monitor"
+1500337550.236409 "SELECT" "0"
+1500337550.236669 "PUBLISH" "crawl.2003" "{\"event\":\"App\\\\Events\\\\Broadcast\\\\CrawlWasUpdated\",\"data\":{\"crawl\":{\"id\":2003,\"keyword\":\"Jaybird\",\"predicted_count\":0,\"submission_count\":0,\"accepted_count\":0,\"rejected_count\":0,\"status\":\"crawling\",\"generatedStatus\":\"crawling\",\"crawl_started_at\":\"2017-07-18T00:25:50+00:00\",\"crawl_ended_at\":null,\"created_at\":\"2017-07-18T00:25:49+00:00\",\"updated_at\":\"2017-07-18T00:25:50+00:00\"},\"socket\":null},\"socket\":null}"
+
+ON LOCAL DEV:
+telnet localhost 6379
+monitor
+---- browser activity comes here
+quit
+
+2) Had to add redis-cli to composer php container

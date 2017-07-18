@@ -43,13 +43,19 @@ services:
       - "9000"
     volumes:
       - .:/home/elastic
-  elastic_beanstalkd:
-    build:
-      context: .
-      dockerfile: docker/beanstalkd.Dockerfile
+  # elastic_beanstalkd:
+  #   build:
+  #     context: .
+  #     dockerfile: docker/beanstalkd.Dockerfile
+  #   ports:
+  #     - "11300:11300"
+  #   privileged: true
+  #   depends_on:
+  #     - elastic_php_fpm
+  elastic_redis:
+    image: "redis"
     ports:
-      - "11300:11300"
-    privileged: true
+      - "6379:6379"
     depends_on:
       - elastic_php_fpm
   elastic_php_worker:
@@ -59,7 +65,9 @@ services:
     depends_on:
       - elastic_app
     links:
-      - elastic_beanstalkd
+      - elastic_redis
       - elastic_db
+    ports:
+      - "6001:6001"
     volumes:
       - .:/home/elastic
