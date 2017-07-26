@@ -108,7 +108,12 @@ https://nicksergeant.com/running-supervisor-on-os-x/
 configs/queue.php
 stop services running on local machine (mysql & beanstalkd)
 
-
+Moving onto Prod:
+1) package.json - make sure the scripts area isn't getting installed by npm installed
+2) backing up database
+3) hot deploy: moving code into its own data volume
+4) CREATE STRESS TESTS (timing) on staging
+5) READ PRODUCTION DOCUMENTATION - considerations
 
         'beanstalkd' => [
             'driver' => 'beanstalkd',
@@ -123,6 +128,8 @@ stop services running on local machine (mysql & beanstalkd)
             'queue' => 'discovery',
             'retry_after' => 90,
         ],
+===============   BACKING UP DB
+docker exec bchues_elastic_db_1 /usr/bin/mysqldump -u elastic_user --password=password elastic_db > sqldump.sql
 
 ===================== REDIS queue
 
@@ -143,3 +150,13 @@ monitor
 quit
 
 2) Had to add redis-cli to composer php container
+
+====================== PRODUCTION VIEW DOCKER ===============
+https://medium.com/@shakyShane/laravel-docker-part-2-preparing-for-production-9c6a024e9797
+https://wiki.ubuntu.com/Lvm = volumes on linux
+http://www.tricksofthetrades.net/2016/03/14/docker-data-volumes/ = talk on data volumes
+https://github.com/CWSpear/local-persist = docker plugin for local-persist data volumes
+https://forums.docker.com/t/host-path-of-volume/12277/9
+
+https://docs.docker.com/compose/production/#running-compose-on-a-swarm-cluster
+https://docs.docker.com/compose/install/

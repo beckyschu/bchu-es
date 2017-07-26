@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_DRIVER', 'beanstalkd'),
+    'default' => env('QUEUE_DRIVER', 'database'),
 
     /*
     |--------------------------------------------------------------------------
@@ -43,8 +43,8 @@ return [
 
         'beanstalkd' => [
             'driver' => 'beanstalkd',
-            'host' => 'elastic_beanstalkd',
-            'queue' => 'discovery',
+            'host' => env('BEANSTALKD_HOST'),
+            'queue' => 'default',
             'retry_after' => 90,
         ],
 

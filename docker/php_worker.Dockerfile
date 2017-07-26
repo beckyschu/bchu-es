@@ -1,5 +1,6 @@
 FROM ubuntu:xenial
 
+WORKDIR /home/elastic
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
 ENV COMPOSER_NO_INTERACTION 1

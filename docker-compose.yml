@@ -13,7 +13,7 @@ services:
     tty: true
     restart: always
     volumes:
-      - .:/home/elastic
+      - ${APP_HOSTDIR}:/home/elastic
   elastic_web:
     build:
       context: .
@@ -25,9 +25,9 @@ services:
       - elastic_db
     restart: always
     volumes:
-      - .:/var/log/nginx
-      - .:/etc/nginx/sites-available
-      - .:/home/elastic
+      - ${APP_HOSTDIR}:/var/log/nginx
+      - ${APP_HOSTDIR}:/etc/nginx/sites-available
+      - ${APP_HOSTDIR}:/home/elastic
     ports:
       - "80:80"
       - "443:443"
@@ -42,22 +42,22 @@ services:
     expose:
       - "9000"
     volumes:
-      - .:/home/elastic
-  # elastic_beanstalkd:
-  #   build:
-  #     context: .
-  #     dockerfile: docker/beanstalkd.Dockerfile
-  #   ports:
-  #     - "11300:11300"
-  #   privileged: true
-  #   depends_on:
-  #     - elastic_php_fpm
-  elastic_redis:
-    image: "redis"
+      - ${APP_HOSTDIR}:/home/elastic
+  elastic_beanstalkd:
+    build:
+      context: .
+      dockerfile: docker/beanstalkd.Dockerfile
     ports:
-      - "6379:6379"
+      - "11300:11300"
+    privileged: true
     depends_on:
       - elastic_php_fpm
+  # elastic_redis:
+  #   image: "redis"
+  #   ports:
+  #     - "6379:6379"
+  #   depends_on:
+  #     - elastic_php_fpm
   elastic_php_worker:
     build:
       context: .
@@ -65,9 +65,9 @@ services:
     depends_on:
       - elastic_app
     links:
-      - elastic_redis
+      - elastic_beanstalkd
       - elastic_db
     ports:
       - "6001:6001"
     volumes:
-      - .:/home/elastic
+      - ${APP_HOSTDIR}:/home/elastic

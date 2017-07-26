@@ -29,3 +29,11 @@ Route::get('/search', function (DiscoveryRepositoryInterface $repository) {
 });
 
 Route::get('/queue/add', 'QueueController@add');
+
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
+Route::get('/example', function () {
+    return view('example.index');
+});
